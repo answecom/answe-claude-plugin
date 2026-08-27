@@ -1,5 +1,6 @@
 {
   "name": "answe",
+  "description": "Official Answe plugin: create live booking forms, reservation flows, and question widgets from a prompt.",
   "owner": {
     "name": "Loistava Interactive (Answe)",
     "email": "answe@answe.com"
