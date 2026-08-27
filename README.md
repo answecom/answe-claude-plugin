@@ -13,11 +13,14 @@ Create live booking forms, reservation flows, and question widgets from a prompt
 
 ## Install
 
-From the Claude Code plugin directory:
+**Claude Code** — this repo is its own plugin marketplace:
 
 ```
-/plugin install answe
+/plugin marketplace add answecom/answe-claude-plugin
+/plugin install answe@answe
 ```
+
+**Claude Cowork** — **Customize** (sidebar) → **Plugins** → **Add marketplace** → `https://github.com/answecom/answe-claude-plugin` → install **Answe**.
 
 Or try it locally from a clone of this repo:
 
