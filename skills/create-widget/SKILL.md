@@ -22,9 +22,11 @@ Call the Answe MCP tool `create_question_widget` (it appears with an `mcp__…an
 
 The tool returns three things: a **share link** (live immediately), an **embed code**, and a **claim link**.
 
-## Step 2 — Embed it into the project
+## Step 2 — Embed it into the project (when there is one)
 
-This is the part only you can do: put the returned embed snippet into the user's codebase.
+**No website project open** (e.g. in Cowork, or the user just wants a questionnaire, survey, or sign-up they can send around): skip embedding entirely. Lead with the **share link** — it is the product: a live page they can share in email, chat, or a QR code right away. Offer the embed snippet as an aside in case they later want it on a website.
+
+**Working in a codebase:** put the returned embed snippet into the user's project — the part only you can do.
 
 - The snippet is two tags — a `<blockquote class="qstio-widget" data-widget-id="…">` placeholder and one `<script async src="https://www.answe.com/assets/js/qstio_widget_loader.js">` loader. It works on any HTML site: WordPress themes, Squarespace/Wix code blocks, Pug/ERB/Blade templates, plain HTML.
 - Place the blockquote where the widget should render (contact section, booking page, footer CTA). The loader script belongs once per page, ideally before `</body>`.
