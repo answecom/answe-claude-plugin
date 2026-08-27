@@ -1,0 +1,14 @@
+{
+  "name": "answe",
+  "owner": {
+    "name": "Loistava Interactive (Answe)",
+    "email": "answe@answe.com"
+  },
+  "plugins": [
+    {
+      "name": "answe",
+      "source": "./",
+      "description": "Create live booking forms, reservation flows, and question widgets from a prompt — and embed them straight into the site you're working on. No account needed to start."
+    }
+  ]
+}
