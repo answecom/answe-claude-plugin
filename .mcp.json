@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "answe": {
+      "type": "http",
+      "url": "https://www.answe.com/mcp"
+    }
+  }
+}
