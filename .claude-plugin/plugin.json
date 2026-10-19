@@ -1,8 +1,8 @@
 {
   "name": "answe",
   "displayName": "Answe",
-  "version": "1.0.0",
-  "description": "Create live booking forms, reservation flows, and question widgets from a prompt — and embed them straight into the site you're working on. No account needed to start.",
+  "version": "1.1.0",
+  "description": "Ask people a question from Claude and get structured answers back — confirmations, RSVPs, bookings, choices, feedback. Creates a live Answe question page with a share link; reads the answers back; embeds it into the site you're working on. No account needed to start.",
   "author": {
     "name": "Loistava Interactive (Answe)",
     "email": "answe@answe.com"
@@ -10,5 +10,14 @@
   "homepage": "https://www.answe.com",
   "repository": "https://github.com/answecom/answe-claude-plugin",
   "license": "MIT",
-  "keywords": ["widgets", "booking", "forms", "reservations", "lead-capture", "embed", "mcp"]
+  "keywords": [
+    "questions",
+    "answers",
+    "rsvp",
+    "booking",
+    "forms",
+    "human-in-the-loop",
+    "embed",
+    "mcp"
+  ]
 }

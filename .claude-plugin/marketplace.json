@@ -1,6 +1,6 @@
 {
   "name": "answe",
-  "description": "Official Answe plugin: create live booking forms, reservation flows, and question widgets from a prompt.",
+  "description": "Official Answe plugin: ask people a question from Claude and get structured answers back.",
   "owner": {
     "name": "Loistava Interactive (Answe)",
     "email": "answe@answe.com"
@@ -9,7 +9,7 @@
     {
       "name": "answe",
       "source": "./",
-      "description": "Create live booking forms, reservation flows, and question widgets from a prompt — and embed them straight into the site you're working on. No account needed to start."
+      "description": "Ask people a question from Claude and get structured answers back — confirmations, RSVPs, bookings, choices, feedback. Live question page with a share link, answers read back by the agent, optional website embed. No account needed to start."
     }
   ]
 }

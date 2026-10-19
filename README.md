@@ -1,15 +1,17 @@
 # Answe plugin for Claude Code
 
-Create live booking forms, reservation flows, and question widgets from a prompt — and let Claude Code embed them straight into the site you're working on.
+Ask people a question from Claude — and get structured answers back.
 
-[Answe](https://www.answe.com) widgets are small chat flows: a visitor sees a question with answer buttons, fills a short form, and gets an instant confirmation. Every answer lands in the owner's Answe chat inbox. Widgets are created live on Answe's servers — **no account, sign-up, or API key needed to start**.
+[Answe](https://www.answe.com) is a question-and-answer platform: someone asks a question, people answer it on a live page with answer buttons and a short form, and the asker gets the answers back. With this plugin Claude can ask a client, a team, customers or event guests something — a confirmation, a choice, an RSVP, a time slot, booking or order details, feedback — send them the link, and read the answers back when they arrive. Questions are hosted on Answe's servers — **no account, sign-up, or API key needed to start**.
 
 ## What's inside
 
-- **Answe MCP server** (`https://www.answe.com/mcp`, no authentication) with two tools:
-  - `create_question_widget` — creates a live widget; returns a share link, a website embed snippet, and a claim link
-  - `get_question_widget` — re-fetches a widget's status and links
-- **`/answe:create-widget` skill** — teaches Claude to design a good widget (fields, selects, confirmation copy), create it, embed the snippet into your project's code, and hand over the links. Claude also invokes it automatically when you ask for a form or booking widget.
+- **Answe MCP server** (`https://www.answe.com/mcp`, no authentication) with three tools:
+  - `ask` — asks a question; returns the share link to send to respondents, a `question_id` + `answers_token` for reading answers back, a private owner link, a claim link and an optional website embed snippet
+  - `get_answers` — reads the answers back (with `wait_seconds` to wait for a reply and `since` for only new ones); takes the `answers_token`, or an Answe API key for a claimed question
+  - `get_question` — a question's status, answer count and links
+  - with an Answe API key on the connection: `list_questions` and `get_dataset`
+- **`/answe:ask-people` skill** — teaches Claude to design a good question (answer buttons, short forms, confirmation copy; bookings, payments and automatic actions after claiming), ask it, read the answers back, and — in a website project — embed it into the code. Claude also invokes it automatically when you ask for a form, a booking or sign-up link, or an answer from someone.
 
 ## Install
 
@@ -30,28 +32,37 @@ claude --plugin-dir ./answe-claude-plugin
 
 ## Use
 
-Just describe what you need while working on a website project:
+Just say what you need to know and from whom:
 
-> Add a table reservation widget for Kalle's Bistro to this page — party size, date and time.
+> Ask the team whether Tuesday at 10 works for the kickoff, and tell me when they've answered.
+
+> Make an RSVP for Friday's dinner with a dietary preferences field — I'll send the link.
+
+> Add a table reservation question for Kalle's Bistro to this page — party size, date and time.
 
 or invoke the skill explicitly:
 
 ```
-/answe:create-widget trial-class sign-up for my gym with a class picker
+/answe:ask-people trial-class sign-up for my gym with a class picker
 ```
 
-Claude creates the widget, pastes the embed code into the right file, and gives you three links:
+Claude asks the question and gives you:
 
-- **Share link** — the widget, live right now
-- **Embed** — already placed in your code
-- **Claim link** — open it to save the widget into a free Answe account so answers reach your inbox (single-use; keep it private, or forward it to the client who should own the answers)
+- **Share link** — send it to the people who should answer; it is live right now
+- **Owner link** — watch answers arrive live, share, edit (private)
+- **Claim link** — save the question into an Answe account so answers also reach your inbox and the Answe app (single-use; keep it private, or forward it to the client who should own the answers)
+- **Embed** — placed in your code when you are working on a website
 
-After claiming, the widget is fully editable in the Answe app — copy, fields, automatic replies, [payments](https://www.answe.com/features/payments), and full [booking rules](https://www.answe.com/features/reservations-booking).
+Then ask Claude "what did they answer?" — it reads the answers back for you.
+
+## For agents
+
+An agent that needs a human's answer calls `ask`, sends the share link, and loops on `get_answers` with `wait_seconds: 25` until `pending` is false. Pass `notify_url` to `ask` to receive every answer as a signed `answer.created` POST instead of polling. After the question is claimed into an Answe account, read it with that account's API key (`Authorization: Bearer ansk_…`, created at answe.com/account).
 
 ## Notes
 
-- Widget creation is rate-limited to 10 per hour per caller.
-- Unclaimed widgets expire after about 30 days.
+- Asking is rate-limited to 10 questions per hour per caller.
+- Unclaimed questions expire after about 30 days.
 - Documentation: [answe.com/docs/getting-started/ai-assistants](https://www.answe.com/docs/getting-started/ai-assistants)
 - Privacy policy: [answe.com/privacy](https://www.answe.com/privacy) · Terms: [answe.com/terms](https://www.answe.com/terms)
 - Support: answe@answe.com
